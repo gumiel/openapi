@@ -1,0 +1,50 @@
+openapi: '3.0.2'
+info:
+  title: Spaceships
+  description: It is and inventory of spaceships
+  contact:
+    name: Henry
+    email: prez.gumiel@gmail.com
+  version: 1.0.0
+servers:
+  - url: https://dev.spaceships.com/v1
+    description: It is a developmen servers
+  - url: https://test.spaceships.com/v1
+    description: It is a testing server
+tags: 
+  - name: spaceships
+    description: Vehicle to trave through space
+    externalDocs:
+      description: Find more
+      url: http://info.spaceships.com
+paths:
+  /spaceships:
+    get:
+      tags:
+      - spaceships
+      summary: Provide a list of all spaceships.
+      parameters:
+        - name: alias
+          in: query
+          description: Common name spaceship
+          required: false
+          schema:
+            type: string
+      responses: 
+        200:
+          description: Ok
+          content: 
+            application/json: 
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/Spaceship'
+    post:
+      tags:
+        - spaceships
+      summary: Register a new spaceship to make it available to manege
+    head:
+      tags:
+        - spaceships
+      summary: Allows checking by certain criteria if nay spaceship accomplishes with the search parameters.
+      
